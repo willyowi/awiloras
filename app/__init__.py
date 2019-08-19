@@ -4,7 +4,7 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy
  
 db = SQLAlchemy()
-login_manager = LoginManger()
+login_manager = LoginManager()
 login_manager.session_protection = "strong"
 login_manager.login_view = "auth.login"
 Bootstrap=Bootstrap()

@@ -12,10 +12,10 @@ class Session_type(db.model):
     
     id=db.Column(db.Integer,primary_key=True)
     session=db.Column(db.String(20))
-    ###user###
-
-
-
+    #add relatiionship  between a sessiontype with session table
+    sessions=db.relationship('Session',backref='session',lazy='dynamic')
+    
+    
 class User(db.Model,UserMixin):
     __tablename__='users'
 
@@ -23,7 +23,8 @@ class User(db.Model,UserMixin):
     email=db.Column(db.String(50)),unique=True,index=True
     phone_number=db.Column(db.Integer)
     password_hash=db.Column(db.String(128))
-    sessions=db.relationship('Session',backref='')
+    #creating a relationship between a user an sessions table
+    sessions=db.relationship('Session',backref='user',lazy='dynamic')
 
     @password.setter
     def password(self,password):
@@ -38,10 +39,6 @@ class User(db.Model,UserMixin):
         '''
         db.session.add(self)
         db.session.commit()  
-    # @class method
-
-
-
 
     def __repr__(self):
         return f'User {self.username}'
@@ -56,12 +53,9 @@ class Session(db.Model):
     time=(db.Column(db.Integer))
     session_id=db.Column(db.Integer,db.ForeignKey('session_types.id'))
 
-    def save_post(self):
+    def save_session(self):
         '''
         Function that saves a drift post
         '''
         db.session.add(self)
         db.session.commit()
-    # @classmethod
-
-    # return
