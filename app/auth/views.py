@@ -29,11 +29,11 @@ def login()
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
-        user=User(email=form.email.data,username=form.username.data,password=form.password.data,role_id=2)
+        user=User(email=form.email.data,username=form.username.data,password=form.password.data)
 
         user.save_user()
         flash('Thanks for Joining Promodoro','success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.index'))
        
     title='New Promodoro account'
     return render_template('auth/register.html',form=form,title=title)    
@@ -42,4 +42,4 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))  
+    return redirect(url_for('main.index'))  
