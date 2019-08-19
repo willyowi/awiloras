@@ -2,29 +2,31 @@ from .import db,login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 
-@login_manger.user_loader
-def load_user(user_id):
-    
-    return User,query.get(int(user_id))
+@login_manager.user_loader
+def load_user(user_id): 
+    return User.query.get(int(user_id))
 
-class SessionType(db.model):
+class SessionType(db.Model):
     __tablename__='session_types'
     
     id=db.Column(db.Integer,primary_key=True)
     session=db.Column(db.String(20))
-    sessions=db.relationship('Session',backref='',lazy='dynamic')
-    ###user###
+    sessions=db.relationship('Session',backref='session',lazy='dynamic')
 
 
 
 class User(db.Model,UserMixin):
     __tablename__='users'
 
-    id=db.Column(db.Integer,Primary_key=True)
-    email=db.Column(db.String(50)),unique=True,index=True
+    id=db.Column(db.Integer,primary_key=True)
+    email=db.Column(db.String(50),unique=True,index=True)
     phone_number=db.Column(db.Integer)
     password_hash=db.Column(db.String(128))
-    sessions=db.relationship('Session',backref='')
+    sessions=db.relationship('Session',backref='session',lazy='dynamic')
+
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self,password):
@@ -39,10 +41,6 @@ class User(db.Model,UserMixin):
         '''
         db.session.add(self)
         db.session.commit()  
-    # @class method
-
-
-
 
     def __repr__(self):
         return f'User {self.username}'
@@ -50,19 +48,17 @@ class User(db.Model,UserMixin):
 class Session(db.Model):
     __tablename__='sessions'
 
-    id=db.Column(db.Integer,Primary_key=True)
+    id=db.Column(db.Integer,primary_key=True)
     user_id=db.Column(db.Integer,db.ForeignKey('user.id'))
 
-    task=(db.Column(db.String)
-    time=(db.Column(db.Integer))
+    task=db.Column(db.String)
+    time=db.Column(db.Integer)
     session_id=db.Column(db.Integer,db.ForeignKey('session_types.id'))
 
-    def save_post(self):
+    def save_session(self):
         '''
         Function that saves a drift post
         '''
         db.session.add(self)
         db.session.commit()
-    # @classmethod
-
-    # return
+   
