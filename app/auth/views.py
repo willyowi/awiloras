@@ -26,3 +26,12 @@ def login()
 
     title='Promodoro Login'
     return render_template('auth/login.html',form=form,title=title) 
+
+
+
+@auth.route('/register',methods=['GET','POST'])
+def register():
+    form=RegistrationForm()
+    if form.validate_on_submit():
+        user=User(email=form.email.data,username=form.username.data,phone_number=form.phone_number.data,password=form.password.data,role_id=2)
+
