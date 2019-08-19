@@ -22,3 +22,7 @@ def login()
             return redirect(request.args.get('next') or url_for('main.home'))
 
         flash('Invalid Username or Password','danger')
+
+
+    title='Promodoro Login'
+    return render_template('auth/login.html',form=form,title=title) 
