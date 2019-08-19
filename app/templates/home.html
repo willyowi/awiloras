@@ -2,3 +2,19 @@
 
 <div class="drift-row">
 {% for drift in drifts %}
+
+<!-- ============================Expressive Cards========================================== -->
+
+<figure class="drift-post-card">
+    <img src="{{url_for('static',filename='images/'+drift.drift_image)}}" alt="" />
+    <div class="date"><span class="day">{{ drift.date.strftime("%d") }}</span><span class="month">{{ drift.date.strftime("%b") }}</span></div>
+    <figcaption>
+      <h3>{{
+          drift.location
+        }}</h3>
+      <p><i class="fa fa-map-marker"></i>
+        {{ drift.location_about}}</p>
+    </figcaption>
+    <div class="hover"><i class="ion-android-open"></i></div>
+    <a href="{{url_for('main.single_driftpost',drift_id=drift.id)}}"></a>
+  </figure>
