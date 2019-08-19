@@ -7,11 +7,12 @@ def load_user(user_id):
     
     return User,query.get(int(user_id))
 
-class Session_type(db.model):
+class SessionType(db.model):
     __tablename__='session_types'
     
     id=db.Column(db.Integer,primary_key=True)
     session=db.Column(db.String(20))
+    sessions=db.relationship('Session',backref='',lazy='dynamic')
     ###user###
 
 
