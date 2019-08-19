@@ -35,3 +35,7 @@ def register():
     if form.validate_on_submit():
         user=User(email=form.email.data,username=form.username.data,phone_number=form.phone_number.data,password=form.password.data,role_id=2)
 
+        user.save_user()
+        flash('Thanks for Joining Promodoro','success')
+        return redirect(url_for('main.home'))
+
