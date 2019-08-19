@@ -49,7 +49,7 @@ class Session(db.Model):
     __tablename__='sessions'
 
     id=db.Column(db.Integer,primary_key=True)
-    user_id=db.Column(db.Integer,db.ForeignKey('user.id'))
+    user_id=db.Column(db.Integer,db.ForeignKey('users.id'))
 
     task=db.Column(db.String)
     time=db.Column(db.Integer)
@@ -61,4 +61,3 @@ class Session(db.Model):
         '''
         db.session.add(self)
         db.session.commit()
-   
