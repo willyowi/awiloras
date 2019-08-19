@@ -6,3 +6,9 @@ from .. import db
 from flask_login import login_user,login_required,logout_user
 
 
+@auth.route('/login',methods=['GET','POST'])
+def login()
+    form=LoginForm()
+
+
+    
