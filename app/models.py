@@ -11,7 +11,7 @@ class SessionType(db.Model):
     
     id=db.Column(db.Integer,primary_key=True)
     session=db.Column(db.String(20))
-    sessions=db.relationship('Session',backref='session',lazy='dynamic')
+    sessions=db.relationship('Session',backref='sessions',lazy='dynamic')
 
 
 
@@ -19,8 +19,8 @@ class User(db.Model,UserMixin):
     __tablename__='users'
 
     id=db.Column(db.Integer,primary_key=True)
+    username=db.Column(db.String(64))
     email=db.Column(db.String(50),unique=True,index=True)
-    phone_number=db.Column(db.Integer)
     password_hash=db.Column(db.String(128))
     sessions=db.relationship('Session',backref='session',lazy='dynamic')
 
