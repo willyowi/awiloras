@@ -5,7 +5,7 @@ class Config:
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY') 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:risperhub@localhost/promo'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:risperhub3@localhost/promo'
     UPLOADS_DEFAULT_DEST ='app/static'
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
