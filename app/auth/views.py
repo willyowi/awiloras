@@ -9,17 +9,13 @@ from flask_login import login_user,login_required,logout_user
 @auth.route('/login',methods=['GET','POST'])
 def login()
     form=LoginForm()
-
-
-
     if form.validate_on_submit():
         user=User.query.filter_by(email=form.email.data).first()
 
         if user is not None and user.verify_password(form.password.data):
-            
             login_user(user,form.remember.data)
 
-            return redirect(request.args.get('next') or url_for('main.home'))
+            return redirect(request.args.get('next') or url_for('main.index'))
 
         flash('Invalid Username or Password','danger')
 
@@ -33,7 +29,7 @@ def login()
 def register():
     form=RegistrationForm()
     if form.validate_on_submit():
-        user=User(email=form.email.data,username=form.username.data,phone_number=form.phone_number.data,password=form.password.data,role_id=2)
+        user=User(email=form.email.data,username=form.username.data,password=form.password.data,role_id=2)
 
         user.save_user()
         flash('Thanks for Joining Promodoro','success')
@@ -46,5 +42,4 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))    
-
+    return redirect(url_for('main.home'))  
