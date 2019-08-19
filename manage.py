@@ -1,7 +1,7 @@
 from app import create_app,db
 from flask_script import manager,Server
 from flask_migrate import Migrate,MigrateCommand
-from app.models import User,Comment,Role,DriftPost
+from app.models import User,Session
 
 app = create_app('development')
 
