@@ -4,7 +4,29 @@
 
 
 <div class="profile-container">
-    <div class="c">
+    <div class="card-container">
+        <img 
+        class="round img-fluid"
+        src="" alt="{{user.username}}">
+
+      <h3>{{user.username}}</h3>
+      <h6>{{user.email}}</h6>  
+
+
+      <div class="buttons">
+            {% if user==current_user %}
+            <button class="primary">
+                <a href="{{url_for('main.profile_update',uname=user.username)}}">Update Profile</a>
+            </button>
+            {% if user.role_id==1 %}
+            <button class="primary ghost">
+                <a href="{{url_for('auth.create_admin',uname=user.username)}}">Create Admin</a>
+            </button>
+            
+            {% endif %}
+            
+            {% endif %}
+          </div>
 
     </div>
 
