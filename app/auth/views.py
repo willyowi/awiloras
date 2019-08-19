@@ -38,4 +38,13 @@ def register():
         user.save_user()
         flash('Thanks for Joining Promodoro','success')
         return redirect(url_for('main.home'))
+       
+    title='New Promodoro account'
+    return render_template('auth/register.html',form=form,title=title)    
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.home'))    
 
