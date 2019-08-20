@@ -47,7 +47,7 @@ def profile_update(uname):
         
         if form.picture.data:
             pic=add_profile_pic(form.picture.data,user.username)
-            current_user.profile_image=pic
+            current_user.profile_pic_path=pic
         user.username=form.username.data
         user.email=form.email.data
 
