@@ -24,7 +24,7 @@ class User(db.Model,UserMixin):
     password_hash=db.Column(db.String(128))
     sessions=db.relationship('Session',backref='session',lazy='dynamic')
     bio=db.Column(db.String(255))
-    profile_pic_path=db.Column(db.String())
+    profile_pic_path=db.Column(db.String(64),default='default_profile.png')
 
     @property
     def password(self):
