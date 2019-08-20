@@ -1,3 +1,4 @@
+
 from flask import render_template,redirect,url_for,request,flash
 from . import auth
 from ..models import User
@@ -7,7 +8,7 @@ from flask_login import login_user,login_required,logout_user
 
 
 @auth.route('/login',methods=['GET','POST'])
-def login()
+def login():
     form=LoginForm()
     if form.validate_on_submit():
         user=User.query.filter_by(email=form.email.data).first()
@@ -42,4 +43,4 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))  
+    return redirect(url_for('main.index')) 
