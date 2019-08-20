@@ -22,8 +22,11 @@ class User(db.Model,UserMixin):
     username=db.Column(db.String(64))
     email=db.Column(db.String(50),unique=True,index=True)
     password_hash=db.Column(db.String(128))
-    #creating a relationship between a user an sessions table
-    sessions=db.relationship('Session',backref='user',lazy='dynamic')
+    sessions=db.relationship('Session',backref='session',lazy='dynamic')
+
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self,password):
@@ -58,3 +61,4 @@ class Session(db.Model):
         '''
         db.session.add(self)
         db.session.commit()
+    
