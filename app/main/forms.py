@@ -11,6 +11,17 @@ from ..models import User
 
 
 
+class UpdateProfileForm(FlaskForm):
+    '''
+    class to create a form to update user details
+    '''
+    email=StringField('Email',validators=[DataRequired(),Email()])
+    username=StringField('Username',validators=[DataRequired()])
+    picture=FileField('Update Profile Pic',validators=[FileAllowed(['jpg','png','jpeg','png'])])
+    submit=SubmitField('Update')
+
+
+
 class Session_typesForm(FlaskForm):
     '''
     class to know the type of session

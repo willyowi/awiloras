@@ -9,7 +9,6 @@ from ..models import User
 class RegistrationForm(FlaskForm):
     email=StringField('Your Email Address',validators=[DataRequired(),Email()])
     username=StringField('Your name',validators=[DataRequired(),Length(min=4,max=64)])
-    phone_number=TelField('Phone Number',validators=[DataRequired()])
     password=PasswordField('Password',validators=[DataRequired(),EqualTo('pass_confirm',message='Password must match')])
     pass_confirm=PasswordField('Confirm Password',validators=[DataRequired()])
     submit=SubmitField('Create Account')
@@ -23,7 +22,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That username is taken')    
 
 
-
+# class Login form
 class LoginForm(FlaskForm):
     email=StringField('Your Email Address',validators=[DataRequired(),Email()])
     password=PasswordField('Password',validators=[DataRequired()])

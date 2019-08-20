@@ -1,0 +1,5 @@
+start.sh
+virtual/
+config.py
+*.pyc
+migrations/
