@@ -4,7 +4,7 @@ from flask_login import login_required,current_user
 from ..models import User,Session
 from ..import db
 from .forms import UpdateProfileForm
-
+from ..image_upload import add_profile_pic
 
 @main.route('/')
 def index():
