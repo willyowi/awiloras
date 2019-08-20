@@ -1,35 +1,36 @@
-{% extends 'base.html'%}
-
-{% block content %}
-
-
-<div class="profile-container">
-    <div class="card-container">
-        <img 
-        class="round img-fluid"
-        src="" alt="{{user.username}}">
-
-      <h3>{{user.username}}</h3>
-      <h6>{{user.email}}</h6>  
-
-
-      <div class="buttons">
-            {% if user==current_user %}
-            <button class="primary">
-                <a href="{{url_for('main.profile_update',uname=user.username)}}">Update Profile</a>
-            </button>
-            {% if user.role_id==1 %}
-            <button class="primary ghost">
-                <a href="{{url_for('auth.create_admin',uname=user.username)}}">Create Admin</a>
-            </button>
-            
-            {% endif %}
-            
-            {% endif %}
-          </div>
-
+{% extends 'base.html'%} {% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <!-- displaying username -->
+    <div class="col-md-8">
+      {% if user.profile_pic_path %}
+      <img
+        src="{{url_for('static',filename=user.profile_pic_path)}}"
+        alt=""
+        class="img-thumbnail"
+      />
+      {%else%}
+      <p>No profile picture</p>
+      {% endif %}
+      <div class="card card-body">
+        <h3>{{ user.username | capitalize }}</h3>
+        <!--Displaying user bio-->
+        {% if user.bio %}
+        <p>{{ user.bio }}</p>
+        {%else%}
+        <p>{{ user.username | capitalize }} has no bio</p>
+        {% endif %} {% if user==current_user%}
+        <a href="{{url_for('main.update_profile',uname=user.username)}}"
+          >Edit Profile</a
+        >
+        {% endif%}
+      </div>
     </div>
 
+    <!-- displaying profile photo -->
 
-
+    <div class="col-md-2"></div>
+  </div>
 </div>
+{%endblock%}
