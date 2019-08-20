@@ -74,3 +74,4 @@ class Session(db.Model):
         #retrieve sessions in descending order
         sessions=Session.query.order_by(Session.id.desc()).all()
         return sessions
+  
