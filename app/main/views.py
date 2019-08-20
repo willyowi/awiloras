@@ -6,21 +6,12 @@ from ..import db
 from .forms import UpdateProfileForm
 from ..image_upload import add_profile_pic
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-# Views
-=======
-#views
->>>>>>> 0565f1fdb466055466764113fc5dc70ef89966ce
-=======
->>>>>>> c4e457b5498824850e90557585a739ba8b74c172
 @main.route('/')
 def index():
     '''
     view root function that returns index page and its data
     '''
-    return render_template('index.html',title='promodoro', user=current_user)
+    return render_template('index.html',title='promodoro',user=current_user)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -72,6 +63,8 @@ def profile_update(uname):
         form.email.data=current_user.email
     
     #fetch the current profile image from the static folder and inject to the template    
-    profile_image=url_for('static',filename='profile_pics/'+user.profile_image)  
+    profile_image=url_for('static',filename='profile_pics/'+user.profile_pic_path)  
     return render_template('profile/update_profile.html',form=form,profile_image=profile_image)  
+
+
 
