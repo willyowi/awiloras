@@ -22,13 +22,6 @@ class UpdateProfileForm(FlaskForm):
 
 
 
-class Session_typesForm(FlaskForm):
-    '''
-    class to know the type of session
-
-    '''
-    session=SelectField('Break or Work',choices=[('',''),('break','Break'),('work','Work')])
-    submit=SubmitField('Type')
 
 
 
@@ -37,6 +30,7 @@ class SessionForm(FlaskForm):
     class to know which sessions and time
 
     '''
-    task=TextAreaField('Whats your current task',validators=[DataRequired()])
-    time=TextAreaField('how for hoe long?',validators=[DataRequired()])
-    submit=SubmitField('Session')
+    task=StringField('Whats your current task',validators=[DataRequired()])
+    session=SelectField('Break or Work',choices=[('',''),('break','Break'),('work','Work')])
+    time=IntegerField('how for hoe long?',validators=[DataRequired()])
+    submit=SubmitField('Add Session')
