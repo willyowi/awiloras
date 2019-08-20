@@ -62,5 +62,16 @@ class Session(db.Model):
         Function that saves a drift post
         '''
         db.session.add(self)
-        db.session.commit()
-    
+        db.session.commit() 
+
+    @classmethod
+    def get_sessions(cls):   
+
+        '''
+        Function that fetches all sessions done by the user
+        '''
+
+        #retrieve sessions in descending order
+        sessions=Session.query.order_by(Session.id.desc()).all()
+        return sessions
+  
