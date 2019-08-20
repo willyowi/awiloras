@@ -33,4 +33,21 @@
     <div class="col-md-2"></div>
   </div>
 </div>
+
+<div class="container">
+    <h3 class="text-center">{{user.username}} Sessions</h3>
+    {% for sess in  sessions%}
+    <div class="card mb-2">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">Task:{{sess.task}}</li>
+                <li class="list-group-item">Time:{{sess.time}}</li>
+                <li class="list-group-item">Session-Type:{{sess.sessions.session}}</li>
+            </ul>
+
+        </div>
+    </div>
+    
+    {% endfor %}
+</div>
 {%endblock%}
