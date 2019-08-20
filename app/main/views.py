@@ -6,6 +6,15 @@ from ..import db
 from .forms import UpdateProfileForm
 from ..image_upload import add_profile_pic
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+# Views
+=======
+#views
+>>>>>>> 0565f1fdb466055466764113fc5dc70ef89966ce
+=======
+>>>>>>> c4e457b5498824850e90557585a739ba8b74c172
 @main.route('/')
 def index():
     '''

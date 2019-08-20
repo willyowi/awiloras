@@ -1,3 +1,4 @@
+
 from flask import render_template,redirect,url_for,request,flash
 from . import auth
 from ..models import User
@@ -42,4 +43,4 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))  
+    return redirect(url_for('main.index')) 
