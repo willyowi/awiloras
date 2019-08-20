@@ -23,6 +23,8 @@ class User(db.Model,UserMixin):
     email=db.Column(db.String(50),unique=True,index=True)
     password_hash=db.Column(db.String(128))
     sessions=db.relationship('Session',backref='session',lazy='dynamic')
+    bio=db.Column(db.String(255))
+    profile_pic_path=db.Column(db.String())
 
     @property
     def password(self):
